@@ -68,7 +68,8 @@ class bind (
         keydir => "${confdir}/keys",
     }
 
-    file { "${confdir}/named.conf.local":
+    file { [ "${confdir}/named.conf.local",
+             "${confdir}/options.conf.local" ]:
         replace => false,
     }
 

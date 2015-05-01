@@ -26,6 +26,7 @@ options {
 <%- if @version != '' -%>
 	version "<%= @version %>";
 <%- end -%>
+  	include "<%= @confdir %>/options.conf.local"; 
 };
 
 include "<%= @confdir %>/named.conf.local";
