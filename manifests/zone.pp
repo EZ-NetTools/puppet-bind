@@ -15,6 +15,7 @@ define bind::zone (
     $forwarders      = '',
     $forward         = '',
     $source          = '',
+    $seltype         = undef,
 ) {
     $cachedir = $bind::cachedir
 
@@ -45,6 +46,7 @@ define bind::zone (
             group   => $bind::params::bind_group,
             mode    => '0755',
             require => Package['bind'],
+            seltype => $seltype,
         }
 
         file { "${cachedir}/${name}/${_domain}":
@@ -54,6 +56,7 @@ define bind::zone (
             mode    => '0644',
             replace => false,
             source  => $_source,
+            seltype => $seltype,
             audit   => [ content ],
         }
 
