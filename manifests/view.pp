@@ -16,6 +16,7 @@ define bind::view (
     $recursion_match_clients      = 'any',
     $recursion_match_destinations = '',
     $recursion_match_only         = false,
+    $servers                      = '',
     $order                        = '10',
 ) {
     $confdir = $::bind::confdir
