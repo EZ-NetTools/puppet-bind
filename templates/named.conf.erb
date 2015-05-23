@@ -11,6 +11,9 @@ statistics-channels {
 
 options {
 	directory "<%= @cachedir %>";
+	dump-file "<%= @cachedir %>/data/cache_dump.db";
+	statistics-file "<%= @cachedir %>/data/named_stats.txt";
+	managed-keys-directory "<%= @cachedir %>/dynamic";
 <%- if @forwarders and @forwarders != '' -%>
 	forwarders {
 <%-   Array(@forwarders).each do |forwarder| -%>
