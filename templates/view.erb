@@ -34,6 +34,49 @@ view "<%= @name %>" {
 	};
 <%-   end -%>
 <%- end -%>
+notify <%= @ns_notify ? 'yes' : 'no' %>;
+<%- if @also_notify and @also_notify != '' -%>
+	also-notify {
+<%-   Array(@also_notify).each do |server| -%>
+		<%= server %>;
+<%-   end -%>
+	};
+<%- end -%>
+<%- if @allow_notify and @allow_notify != '' -%>
+	allow-notify {
+<%-   Array(@allow_notify).each do |server| -%>
+		<%= server %>;
+<%-   end -%>
+	};
+<%- end -%>
+<%- if @transfer_source and @transfer_source != ''-%>
+	transfer-source <%= @transfer_source %>;
+<%- end -%>
+<%- if @allow_updates and @allow_updates != '' -%>
+	allow-update {
+<%-   Array(@allow_updates).each do |allow_update| -%>
+		<%= allow_update %>;
+<%-   end -%>
+	};
+<%- end -%>
+<%- if @allow_transfers and @allow_transfers != '' -%>
+	allow-transfer {
+<%-   Array(@allow_transfers).each do |allow_transfer| -%>
+		<%= allow_transfer %>;
+<%-   end -%>
+	};
+<%- end -%>
+<%- if @forward != '' -%>
+	forward <%= @forward %>;
+<%- end -%>
+<%- if @forwarders and @forwarders != '' -%>
+	forwarders {
+<%-   Array(@forwarders).each do |forwarder| -%>
+		<%= forwarder %>;
+<%-   end -%>
+	};
+<%- end -%>
+
 <%- if scope.lookupvar('osfamily') == 'Debian' -%>
 	include "<%= @confdir %>/named.conf.default-zones";
 <%- end -%>
