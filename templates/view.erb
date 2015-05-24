@@ -34,7 +34,7 @@ view "<%= @name %>" {
 	};
 <%-   end -%>
 <%- end -%>
-notify <%= @ns_notify ? 'yes' : 'no' %>;
+	notify <%= @ns_notify ? 'yes' : 'no' %>;
 <%- if @also_notify and @also_notify != '' -%>
 	also-notify {
 <%-   Array(@also_notify).each do |server| -%>
