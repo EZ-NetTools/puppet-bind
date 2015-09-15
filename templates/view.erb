@@ -77,9 +77,9 @@ view "<%= @name %>" {
 	};
 <%- end -%>
 <%- if @servers and @servers != '' -%>
-<%-   Hash(@servers).each do |server, options| -%>
+<%-   @servers.each do |server, options| -%>
 	server <%= server %> {
-<%-     Hash(options).each do |key, value| -%>
+<%-     options.each do |key, value| -%>
 <%-       if key == 'keys' -%>
 		<%= key %> <%= Array(value).map{ |x| '"' + x + '"' }.join("; ") %>;
 <%-       else -%>
