@@ -2,6 +2,7 @@
 include "<%= @confdir %>/acls.conf";
 include "<%= @confdir %>/keys.conf";
 include "<%= @confdir %>/views.conf";
+include "<%= @confdir %>/controls.conf";
 <%- if @statistics_port -%>
 
 statistics-channels {
@@ -28,6 +29,9 @@ options {
 	dnssec-lookaside <%= @dnssec ? 'auto' : 'no' %>;
 <%- if @version != '' -%>
 	version "<%= @version %>";
+<%- end -%>
+<%- if @allow_new_zones -%>
+	allow-new-zones yes;
 <%- end -%>
   	include "<%= @confdir %>/options.conf.local"; 
 };

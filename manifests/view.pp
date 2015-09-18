@@ -7,6 +7,7 @@ define bind::view (
     $transfer_source              = '',
     $allow_updates                = '',
     $allow_transfers              = '',
+    $allow_new_zones              = false,
     $ns_notify                    = true,
     $also_notify                  = '',
     $allow_notify                 = '',

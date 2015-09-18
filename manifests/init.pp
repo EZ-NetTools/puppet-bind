@@ -9,6 +9,7 @@ class bind (
     $version         = undef,
     $rndc            = undef,
     $statistics_port = undef,
+    $allow_new_zones = false,
 ) {
     include ::bind::params
 
@@ -77,6 +78,7 @@ class bind (
         "${confdir}/acls.conf",
         "${confdir}/keys.conf",
         "${confdir}/views.conf",
+        "${confdir}/controls.conf",
         ]:
         owner   => 'root',
         group   => $::bind::params::bind_group,
@@ -101,6 +103,22 @@ class bind (
         order   => '00',
         target  => "${confdir}/views.conf",
         content => "# This file is managed by puppet - changes will be lost\n",
+    }
+
+    concat::fragment { 'named-controls-header':
+        order   => '00',
+        target  => "${confdir}/controls.conf",
+        content => "# This file is managed by puppet - changes will be lost\n"
+    }
+    @concat::fragment { 'named-controls-start':
+        order   => '01',
+        target  => "${confdir}/controls.conf",
+        content => "controls {\n"
+    }
+    @concat::fragment { 'named-controls-end':
+        order   => '99',
+        target  => "${confdir}/controls.conf",
+        content => "};"
     }
 
     service { 'bind':

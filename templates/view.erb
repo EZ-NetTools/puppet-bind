@@ -90,6 +90,10 @@ view "<%= @name %>" {
 <%-   end -%>
 <%- end -%>
 
+<%- if @allow_new_zones -%>
+	allow-new-zones yes;
+<%- end -%>
+
 <%- if scope.lookupvar('osfamily') == 'Debian' -%>
 	include "<%= @confdir %>/named.conf.default-zones";
 <%- end -%>
